@@ -1,7 +1,7 @@
 # Printful: Available Shipping Options
 Retrives a list of all available shipping options from Printful's Shipping Rate API. 
 
-# This project uses 2 composer plugin
+### This project uses 2 composer plugin
     - quincykwende/printfulcache; This composer package was made for the purpose of this task
     - guzzlehttp/guzzle
 
