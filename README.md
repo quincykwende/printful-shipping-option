@@ -27,14 +27,18 @@ Retrives a list of all available shipping options from Printful's Shipping Rate 
 ## Installation
 ```	
 	git clone https://github.com/quincykwende/printful-shipping-option.git
-	cd printful-shipping-option (repository's directory)
+	
+	cd printful-shipping-option /**repository's directory**/
+	
 	composer update / composer install
-
+	
+	mkdir cache
+	
+	sudo chmod -R 777 cache
 ```
 - Enter your api_key in the config/config.php
 - Create your cache folder anywhere and update the path in config/config.php
 - The give write access to this directory
-
 ```sudo chmod -R 777 cache```
 
 NB: My cache folder is in the root directory. 
