@@ -12,6 +12,7 @@ namespace PrintfulTasks;
 use PrintfulCache\FileCache;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use PrintfulTasks\Exception\PrintfulException;
 
 
 class Request{
@@ -21,6 +22,10 @@ class Request{
     {
         //load config
         $config = include_once "./config/config.php";
+
+        if($config['api_key'] == ''){
+            throw new PrintfulException("Please define your api_key in config/config.php");
+        }
 
         //get authorisation string
         $this->authorisation = $this->authorizationString($config['api_key']);
