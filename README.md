@@ -2,7 +2,7 @@
 Retrives a list of all available shipping options from Printful's Shipping Rate API. 
 
 ### This project uses 2 composer plugin
-    - quincykwende/printfulcache; This composer package was made for the purpose of this task
+    - quincykwende/printfulcache; This composer package (file caching) was made for the purpose of this task
     - guzzlehttp/guzzle
 
 
@@ -27,7 +27,8 @@ Retrives a list of all available shipping options from Printful's Shipping Rate 
 ## Installation
 ```	
 	git clone https://github.com/quincykwende/printful-shipping-option.git
-	composer update
+	cd printful-shipping-option (repository's directory)
+	composer update / composer install
 
 ```
 - Enter your api_key in the config/config.php
