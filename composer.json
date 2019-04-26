@@ -1,6 +1,14 @@
 {
+    "name": "printful-tasks",
+    "type": "project",
+    "description": "Assignment as part of job interview process",
     "require": {
         "quincykwende/printfulcache": "^1.0",
         "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "PrintfulTasks\\": "src"
+        }
     }
 }
