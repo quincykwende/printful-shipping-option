@@ -1,12 +1,12 @@
-# Developer Task for PRINTFUL
-Use the "quincykwende/printfulcache and guzzlehttp/guzzle" composer package to retrive the list of available shipping options from Printful's Shipping Rate API
+# Printful: Available Shipping Options
+Used the "quincykwende/printfulcache and guzzlehttp/guzzle" composer package to retrive the list of available shipping options from Printful's Shipping Rate API
 This project uses 2 composer plugin
 	- quincykwende/printfulcache; This composer package was made for the purpose of this task
     - guzzlehttp/guzzle
 
 
 ## Folder Structure
-	- printful (root)
+	- printful-shipping-option (root)
 		- cache
 		- config
 			- config.php
@@ -53,7 +53,7 @@ NB: My cache folder is in the root directory.
 	$city = "Charlotte";
 	$zip = "28273";
 
-    //build JSON
+    //build data
 	$data = [
 		"recipient" => [
 			"address1" => $address,

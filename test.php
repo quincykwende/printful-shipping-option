@@ -1,23 +1,23 @@
 <?php
 
-//Running Test here
+	//Running Test here
 
-//autoload
-require_once __DIR__.'/vendor/autoload.php';
+	//autoload
+	require_once __DIR__.'/vendor/autoload.php';
 
-use PrintfulTasks\ShippingRates;
+	use PrintfulTasks\ShippingRates;
 
-$shippment_rates = new ShippingRates();
+	$shippment_rates = new ShippingRates();
 
-//build data
-$product_variant_id = "7679";
-$quantity = 2;
-$address = "11025 Westlake Dr";
-$country_code = "US";
-$city = "Charlotte";
-$zip = "28273";
+	//build data
+	$product_variant_id = "7679";
+	$quantity = 2;
+	$address = "11025 Westlake Dr";
+	$country_code = "US";
+	$city = "Charlotte";
+	$zip = "28273";
 
-    //build JSON
+    //build data
 	$data = [
 		"recipient" => [
 			"address1" => $address,
@@ -35,11 +35,6 @@ $zip = "28273";
 
 	$results = $shippment_rates->getRates($data);
 
-	foreach($results as $result){
-
-	}
-
 	echo "<pre>";
 	var_dump($results);
 	echo "</pre>";
-
