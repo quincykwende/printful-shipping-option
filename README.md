@@ -13,6 +13,7 @@ Retrives a list of all available shipping options from Printful's Shipping Rate 
 			- config.php
 			- printful-cache.php (publish the quincykwende/printfulcache config file here)
 		- src
+			- Exception
 			- Request.php
 			- ShippingRates.php
 		- README.md
