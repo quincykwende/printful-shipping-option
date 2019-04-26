@@ -9,6 +9,7 @@
 */ 
 
 namespace PrintfulTasks;
+use PrintfulCache\FileCache;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
@@ -18,6 +19,7 @@ class Request{
 	//Construct
 	public function __construct()
     {
+        //load config
         $config = include_once "./config/config.php";
 
         //get authorisation string
@@ -25,9 +27,12 @@ class Request{
 
         //instantiate Guzzle Client
         $this->client = new Client([
-		    'base_uri' => $config['base_url'],
+		    'base_uri' => $config['base_uri'],
 		    'timeout'  => 2.0,
 		]);
+
+        //instantiate cache
+        $this->cache = new FileCache();
     }
 
     /**
@@ -54,42 +59,51 @@ class Request{
      * @return object
      */
     public function post($uri, $data, $authenticate=false){
+        /*
+        * check if request is already in cache then return cached request
+        * Build cache key from uri + data; key is supposed to be string
+        */
+        $key = serialize($uri.$data);
 
-		try{
+        if($this->cache->get($key) != null){
+            //get reponse from cache
+            $response = $this->cache->get($key);  
 
-            $response = $this->client->request('PUT', $uri, 
-                [
-	               'body' => $data,
-	               'headers' => [
-        				          'Content-Type' => 'application/json',
-        				          'Authorization' => $this->authorisation,
-        				        ]
-	   		    ]
-            );
+        }else{
+            try{
+                $response = $this->client->post($uri, 
+                    [
+                       'headers' => [
+                                      'Content-Type' => 'application/json',
+                                      'Accept' => 'application/json',
+                                      'Authorization' => $this->authorisation,
+                                    ],
+                        'body' => $data,
+                    ]
+                );
+                $response = json_decode($response->getBody()->getContents());
+            }
+            catch (\GuzzleHttp\Exception\RequestException $e) {
 
-            $response = json_decode($response->getBody()->getContents());
+                $response = json_decode($e->getResponse()->getBody()->getContents());
 
-            $results = [
-            			'status' => '200',
-	    				'data' => $response
-            		];
+                /*$results = [
+                                'status' => '400',
+                                'data' => $response
+                        ];*/
 
-	    	return json_decode(json_encode($results));
+                return json_decode(json_encode($response));
+            }
+
+            //set result in cache for five minutes --- function takes duration in seconds
+            $duration = 5 * 60;
+            $this->cache->set($key, $response, $duration);
         }
-        catch (\GuzzleHttp\Exception\RequestException $e) {
 
-            var_dump($response);
+        //build result array
+        //$results = ['status' => '200', 'data' => $response];
 
-            $response = json_decode($e->getResponse());
-
-            $results = [
-            			'status' => '400',
-	    				'data' => $response
-            		];
-
-            return json_decode(json_encode($results));
-        }
-
+	    return json_decode(json_encode($response));
 	}
 	
 

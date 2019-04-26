@@ -12,13 +12,13 @@ $shippment_rates = new ShippingRates();
 //build data
 $product_variant_id = "7679";
 $quantity = 2;
-$address = "11025 Westlake Dr, Charlotte, North Carolina, 28273";
+$address = "11025 Westlake Dr";
 $country_code = "US";
 $city = "Charlotte";
 $zip = "28273";
 
-//build JSON
-$data = [
+    //build JSON
+	$data = [
 		"recipient" => [
 			"address1" => $address,
 			"city"=>  $city,
@@ -33,9 +33,13 @@ $data = [
 		]
 	];
 
-	//echo json_encode($data);
+	$results = $shippment_rates->getRates($data);
 
-	var_dump($shippment_rates->getRates($data));
+	foreach($results as $result){
 
+	}
 
-exit;
+	echo "<pre>";
+	var_dump($results);
+	echo "</pre>";
+
