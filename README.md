@@ -28,9 +28,9 @@ Retrives a list of all available shipping options from Printful's Shipping Rate 
 ```	
 	git clone https://github.com/quincykwende/printful-shipping-option.git
 	
-	cd printful-shipping-option /**repository's directory**/
+	cd printful-shipping-option #repository's directory
 	
-	composer update / composer install
+	composer install
 	
 	mkdir cache
 	
