@@ -1,8 +1,8 @@
 # Printful: Available Shipping Options
-Used the "quincykwende/printfulcache and guzzlehttp/guzzle" composer package to retrive the list of available shipping options from Printful's Shipping Rate API. 
+Retrives a list of all available shipping options from Printful's Shipping Rate API. 
 
-This project uses 2 composer plugin
-	- quincykwende/printfulcache; This composer package was made for the purpose of this task
+# This project uses 2 composer plugin
+    - quincykwende/printfulcache; This composer package was made for the purpose of this task
     - guzzlehttp/guzzle
 
 
@@ -33,7 +33,9 @@ This project uses 2 composer plugin
 - Enter your api_key in the config/config.php
 - Create your cache folder anywhere and update the path in config/config.php
 - The give write access to this directory
+
 ```sudo chmod -R 777 cache```
+
 NB: My cache folder is in the root directory. 
 
 
